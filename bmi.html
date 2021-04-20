@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>BMI Calculator</title>
+    <style>
+        .cal {
+            font-size:20px;
+            text-align:center;
+            border: 2px solid black;
+            margin-right: 150px;
+            margin-left: 80px;
+            background-color: lightblue;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="BMI"></div>
+</body>
+<script type="text/babel">
+    class BMI extends React.Component{
+        constructor(props)
+        {
+            super(props);
+            this.state={val1:"",val2:"", res:""}
+        }
+        render(){
+            
+            return(
+                
+                <div class="cal">
+                <h1>BMI Calculator</h1>
+                <h2>Height: <input onChange={this.readInput} type="Number" placeholder="enter value"  value={this.state.val1} /> </h2>
+                <h2>Weight: <input onChange={this.readWeight} type="Number" placeholder="enter value"  value={this.state.val2} /> </h2>
+                <button onClick={this.cal}>Calculate</button> 
+                <h2>{this.state.res}</h2>
+            </div>
+            );
+        }
+
+        readInput = (ele) =>{
+				console.log(ele.target.name);
+			//	this.setState({[ele.target.name]:ele.target.value});
+                this.setState({val1:ele.target.value})		
+        }
+
+
+        readWeight = (ele) =>{
+				console.log(ele.target.name);
+			//	this.setState({[ele.target.name]:ele.target.value});
+                this.setState({val2:ele.target.value})		
+        }
+        cal = () => {
+            alert("hi")
+            const result=(Number(this.state.val2)/((Number(this.state.val1)/100)*(Number(this.state.val1)/100)))
+            this.setState({res:result});
+        }
+    }
+
+    ReactDOM.render(<BMI />,document.getElementById('BMI'));
+    
+</script>
+
+</html>
