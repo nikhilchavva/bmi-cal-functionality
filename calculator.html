@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Calculator</title>
+</head>
+<body>
+    <div id="calc"></div>
+</body>
+<script type="text/babel">
+    class Calculator extends React.Component{
+        constructor(props){
+            super(props)
+            this.state={val1:0,val2:0,res:0}
+        }
+        render(){
+            return(
+                <div>
+                    <h2>Input1: <input onChange={this.readInput1} type="Number" placeholder="enter value"  value={this.state.val1} /> </h2>
+                    <h2>Input2: <input onChange={this.readInput2} type="Number" placeholder="enter value"  value={this.state.val2} /> </h2> 
+                    
+                    <p><button class="button" onClick={this.sum}>ADD</button>&nbsp;&nbsp;
+                    <button class="button" onClick={this.difference}>SUB </button>&nbsp;&nbsp;
+                    <button class="button" onClick={this.multiply}>MUL </button>&nbsp;&nbsp;
+                    <button class="button" onClick={this.divide}>DIV </button>&nbsp;&nbsp;</p>
+                    <input type="text" value={this.state.res}/><br/>
+            </div>
+            );
+        }
+        readInput1 = (ele) =>{
+				console.log(ele.target.name);
+			//	this.setState({[ele.target.name]:ele.target.value});
+                this.setState({val1:ele.target.value})		
+        }
+
+        readInput2 = (ele) =>{
+				console.log(ele.target.name);
+			//	this.setState({[ele.target.name]:ele.target.value});
+                this.setState({val2:ele.target.value})		
+        }
+        sum= () =>{
+            const result=Number(this.state.val1)+Number(this.state.val2)
+				console.log(this.state.val2);
+				this.setState({res:result});
+                // alert("Added two numbers");
+        }
+        difference = () => {
+                const result=Number(this.state.val1)-Number(this.state.val2)
+				console.log(this.state.val2);
+				this.setState({res:result});
+                // alert("Subbracted two numbers")
+            }
+        multiply = () => {
+            // alert("mutiplied two numbers")
+            const result=Number(this.state.val1)*Number(this.state.val2)
+            console.log(this.state.val2);
+            this.setState({res:result});
+        }
+
+        divide = () => {
+            const result=Number(this.state.val1)/Number(this.state.val2)
+            console.log(this.state.val2);
+            this.setState({res:result});
+            // alert("divided two numbers")
+        }
+    }
+    ReactDOM.render(<Calculator />,document.querySelector('#calc'));
+</script>
+</html>
